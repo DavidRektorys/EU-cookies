@@ -1,0 +1,40 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<style>
+	#EUcookies{position:fixed;right:20px;bottom:20px;z-index:100000;width:250px;padding:10px;border-radius:5px;text-align:justify;border:1px solid silver;background-color:#fff}#EUcookiesCloseButton{background-color:#25A93C;color:#fff;padding:5px;width:100%;cursor:pointer;margin-top:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;font-weight:700;border:1px solid #18ab29;text-shadow:0 1px 0 #2f6627}#EUcookiesCloseButton:hover{background-color:green}.EUcookiesBoxHidden{display:none}@media (max-width:767px){#EUcookies{width:100%;right:0;bottom:0;border-radius:0;padding:0;border:initial;border-top:solid silver 1px}#EUcookiesInner{padding:10px}}
+	</style>
+	
+</head>
+<body>
+	
+	<!-- This is the box thing which contains the cookie script launcher -->
+	<div id="EUcookies" class="EUcookiesBoxHidden">
+		<div id="EUcookiesInner">
+			This website uses cookies to improve our services. <a href="https://www.google.com/policies/technologies/cookies/" target="_blank">More information</a>
+			<br>
+			<button id="EUcookiesCloseButton">Accept</button>
+		</div>
+	</div>
+	
+	<script>
+	/* This part of the script checks if the cookie was saved. If not, it shows the EU cookie box. */
+	if (/(^|;\s?)EUcookies=/.test(document.cookie)) {
+		$('#EUcookies').addClass('EUcookiesBoxHidden');
+	}
+	else {
+		$('#EUcookies').removeClass('EUcookiesBoxHidden');
+	}
+	/* This is the main part of the script. It sets and saves the agreement into a cookie for the next 10 years and it also hides the EU cookie box. */
+	$('#EUcookiesCloseButton').click(function(){
+		var date = new Date();
+		date.setTime(date.getTime() + (10 * 365 * 24 * 60 * 60 * 1000));
+		document.cookie = 'EUcookies=true; path=/; expires=' + date.toGMTString();
+		$('#EUcookies').addClass('EUcookiesBoxHidden');
+	});	
+	</script>	
+
+</body>
+</html>
